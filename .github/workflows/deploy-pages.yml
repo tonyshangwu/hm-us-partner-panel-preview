@@ -18,6 +18,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Materialize PNG icons
+        run: python3 icons/write_icons.py
       - name: Enable GitHub Pages if needed
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
