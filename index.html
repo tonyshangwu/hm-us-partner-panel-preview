@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none'">
+<title>寰美海外 · 美国合作企业面板（雏形）</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#102e35">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="寰美企业">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<style>
+:root{font:16px/1.55 system-ui,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;color:#172d36;background:#f0f4f5;--ink:#172d36;--dim:#52666e;--line:#dce6e8;--teal:#08695e;--nav:#102e35}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit;color:inherit}button,select{cursor:pointer}button,.control,input,select,textarea{border:1px solid #cbdadd;border-radius:8px;background:white;padding:8px 12px}button:hover{border-color:var(--teal);background:#edf8f5}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #51b8a6;outline-offset:2px}button.primary{background:var(--teal);color:white;border-color:var(--teal);font-weight:700}button.primary:hover{background:#07564e}.danger{color:#a22d2f}h1,h2,h3,p{margin:0}h1{font-size:clamp(21px,3vw,32px);letter-spacing:.01em}h2{font-size:24px}h3{font-size:16px}small,.muted{color:var(--dim);font-size:13px}.mono{font-family:ui-monospace,monospace;letter-spacing:.02em}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.stack{display:grid;gap:14px}.wrap{max-width:1536px;margin:auto;padding-inline:clamp(16px,3.3vw,52px)}
+header{background:var(--nav);color:#fff;border-bottom:4px solid #39a08e}header .wrap{padding-block:23px}header p{color:#b9d0d1;font-size:14px;margin-top:5px}.brand{display:flex;align-items:center;gap:15px}.mark{border:1px solid #72aa9f;border-radius:12px;width:49px;height:49px;display:grid;place-items:center;color:#b9f3e4;font-weight:800;flex:none}.banner{background:#e0f1ec;color:#14584e;border:1px solid #c8e4da;border-radius:10px;padding:10px 15px;margin:20px 0 13px;font-size:14px}.badge,.pill{display:inline-block;border-radius:6px;background:#e7f3ef;color:#155c50;padding:2px 8px;font-size:12px;font-weight:700;white-space:nowrap}.badge{background:#155c50;color:white}.pill.referral{background:#ece8f8;color:#594187}.pill.other{background:#e9edf1;color:#445567}.pill.risk,.pill.paused{background:#fbe9e0;color:#943f24}
+nav{display:flex;gap:3px;border-bottom:1px solid #cfdde0;margin-bottom:23px}nav button{border:0;border-radius:0;background:transparent;padding:10px 20px;border-bottom:3px solid transparent;color:var(--dim)}nav button[aria-current=true]{border-bottom-color:var(--teal);color:var(--teal);font-weight:800}
+main{padding-bottom:45px}.section-head{margin-bottom:13px}.section-head p{margin-top:3px}.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:17px}.kpi{text-align:left;min-height:136px;padding:17px 18px;display:grid;gap:2px;align-content:center;border-color:var(--line);border-top:3px solid #6faa9b}.kpi strong{font-size:37px;color:var(--teal);line-height:1.16;font-variant-numeric:tabular-nums}.kpi:nth-child(n+3){border-top-color:#cd9871}.kpi:nth-child(n+3) strong{color:#8a472b}.breakdowns{grid-template-columns:1.2fr 1fr 1fr;align-items:start}.panel{border:1px solid var(--line);border-radius:12px;background:#fff;padding:17px;box-shadow:0 2px 5px #153d4610}.panel h3{margin-bottom:9px}.metric{display:grid;grid-template-columns:minmax(82px,1fr) 1fr 27px;gap:9px;align-items:center;width:100%;border:0;padding:5px 6px;text-align:left;font-size:14px}.metric strong{text-align:right}.track{height:6px;background:#e5efed;border-radius:9px;overflow:hidden}.track i{display:block;height:100%;background:#4e9e8d;border-radius:9px}.footnote{margin-top:13px}
+.filters{margin-bottom:13px}.filters input{width:min(100%,660px)}.filters select{max-width:100%;font-size:14px}.table-wrap{overflow:auto;padding:0}table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}th,td{padding:12px 14px;border-bottom:1px solid #edf2f3;vertical-align:middle}th{background:#f5f9f8;color:#425961;white-space:nowrap}tr:last-child td{border-bottom:0}.link{border:0;background:transparent;color:#075c51;font-weight:750;padding:0;text-align:left}.board{display:grid;grid-template-columns:repeat(7,minmax(174px,1fr));gap:10px;overflow-x:auto;padding:2px 1px 12px}.lane{border:1px solid #d5e1e3;background:#e8eef0;border-radius:10px;min-height:360px;padding:8px}.lane.over{outline:2px dashed var(--teal);background:#d9eee7}.lane h3{padding:5px 3px 11px;font-size:14px}.card{display:grid;gap:9px;background:white;border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:9px;cursor:grab;overflow-wrap:anywhere}.card select{width:100%;font-size:13px;padding:4px 6px}.card .link{font-size:15px;line-height:1.32}.card .row{gap:4px}.empty{padding:21px;color:var(--dim);text-align:center}.lane .empty{font-size:13px;padding:14px 4px}
+dialog{color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:0;width:min(720px,calc(100% - 24px));max-height:92vh;background:#f5f8f8;box-shadow:0 12px 60px #12293240}dialog::backdrop{background:#132f3a75}.drawer{margin:0 0 0 auto;width:min(710px,100%);height:100%;max-width:100%;max-height:100%;border-radius:14px 0 0 14px}.dialog-head{position:sticky;top:0;background:#f5f8f8;z-index:1;border-bottom:1px solid var(--line);padding:16px 19px}.dialog-head h2{overflow-wrap:anywhere}.dialog-body{padding:15px 19px 24px}.icon{min-width:40px;padding:5px 10px}.details,.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0}.details dd{margin:1px 0 0;overflow-wrap:anywhere;font-size:14px}.details dt{color:var(--dim);font-size:13px}.stage-bar{display:flex;height:12px;background:#e6edef;border-radius:20px;overflow:hidden;margin:8px 0}.legend{display:flex;gap:6px 13px;flex-wrap:wrap;font-size:13px;color:var(--dim);margin-bottom:9px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.subrow{padding:9px 0;border-top:1px solid #e7eef0;overflow-wrap:anywhere}.subrow p{white-space:pre-wrap}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid label{display:grid;gap:4px;font-size:14px}.form-grid input,.form-grid textarea,.form-grid select{width:100%;min-width:0}.wide{grid-column:1/-1}fieldset{border:1px solid var(--line);border-radius:8px;margin:0;padding:8px 12px}fieldset label{font-size:14px}textarea{min-height:65px;resize:vertical}#notice{position:fixed;bottom:18px;right:20px;z-index:4;background:#103e38;color:white;padding:10px 15px;border-radius:8px;max-width:90vw}#notice:empty{display:none}.toast{background:#e0f1ec;padding:8px;border-radius:6px;color:#14584e;margin-bottom:9px}.toast:empty{display:none}.error{color:#a22d2f}.import-actions{margin-top:12px}
+header button[data-action="data"]{color:var(--ink)}
+.form-actions{position:sticky;bottom:0;background:#f5f8f8;border-top:1px solid var(--line);padding:12px 19px}
+.form-actions .row{justify-content:flex-end}
+.form-actions .error:empty{display:none}
+#modal:has(.form-actions){scroll-padding-block:75px}
+.detail-contacts{margin-top:12px}
+.detail-contacts h4{margin:0 0 5px;font-size:14px}
+@media(max-width:780px){.breakdowns{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.details{grid-template-columns:repeat(2,minmax(0,1fr))}.brand{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="wrap row between"><div class="brand"><span class="mark" aria-hidden="true">HM</span><div><h1>寰美海外 · 美国合作企业面板（雏形）</h1><p>本机浏览器存储 · 尚未对接 WorkBuddy / 文案面板</p></div></div><div class="row"><button data-action="data">数据管理</button><button class="primary" data-action="new">＋ 新建企业</button></div></div></header>
+<main class="wrap">
+<div id="banner" class="banner"></div>
+<nav aria-label="视图"><button data-view="overview">总览统计</button><button data-view="board">合作看板</button><button data-view="list">企业列表</button></nav>
+<section id="workspace"></section>
+</main>
+<dialog id="drawer" class="drawer" aria-label="企业详情"></dialog>
+<dialog id="modal" aria-label="编辑与数据管理"></dialog>
+<div id="notice" role="status"></div>
+<script>
+'use strict';
+const STATUS = {prospect:'意向接洽',diligence:'尽调中',negotiation:'协议洽谈',signed:'已签约',active:'履约中',paused:'暂缓',ended:'已终止'};
+const DILIGENCE = {not_started:'未开始',in_progress:'进行中',done:'已完成',risk:'有风险'};
+const ROLES = {sponsor:'担保雇主',referral:'渠道转介',other:'其他合作'};
+const STAGES = {
+  pre:['前期启动','#94a3b8','学历评估、等待资料或暂缓'],
+  pwd:['9141 现行工资','#0891b2','9141 制作与递交'],
+  ad:['广告招聘','#f59e0b','招聘广告投放'],
+  perm:['PERM 劳工证','#3b82f6','递交与等待批复'],
+  c140:['I-140 申请','#1d4ed8','制作、待付费或已递交']
+};
+const MATCH = {none:'未定',tnt:'暂定',ok:'已确定'};
+const LINES = {single:'单线',EW:'EW 线',EB:'EB 线'};
+const STATES = Object.fromEntries(
+  ('AL 阿拉巴马|AK 阿拉斯加|AZ 亚利桑那|AR 阿肯色|CA 加利福尼亚|CO 科罗拉多|CT 康涅狄格|DE 特拉华|FL 佛罗里达|GA 佐治亚|HI 夏威夷|ID 爱达荷|IL 伊利诺伊|IN 印第安纳|IA 艾奥瓦|KS 堪萨斯|KY 肯塔基|LA 路易斯安那|ME 缅因|MD 马里兰|MA 马萨诸塞|MI 密歇根|MN 明尼苏达|MS 密西西比|MO 密苏里|MT 蒙大拿|NE 内布拉斯加|NV 内华达|NH 新罕布什尔|NJ 新泽西|NM 新墨西哥|NY 纽约|NC 北卡罗来纳|ND 北达科他|OH 俄亥俄|OK 俄克拉何马|OR 俄勒冈|PA 宾夕法尼亚|RI 罗得岛|SC 南卡罗来纳|SD 南达科他|TN 田纳西|TX 得克萨斯|UT 犹他|VT 佛蒙特|VA 弗吉尼亚|WA 华盛顿|WV 西弗吉尼亚|WI 威斯康星|WY 怀俄明|DC 哥伦比亚特区').split('|').map(item=>[item.slice(0,2),item.slice(3)])
+);
+const PATHS = ['EB3','EB2','EW3','EW+EB2','EW+EB3','EB1/NIW'];
+const CATEGORIES = ['EB3/本科','EB3/工作经验','EB2/硕士','EW3','EW3+EB2','EW3+EB3','EB1/NIW'];
+const MASTER = {
+  legalName:'法定名称',dba:'DBA',aliases:'历史名称／别名',ein:'EIN 税号（仅记录）',edd:'EDD',naics:'NAICS 码',industry:'行业',
+  yearEstablished:'成立年份',headcount:'员工人数',revenue:'年销售额',addr:'公司地址',city:'城市',state:'注册州',zip:'邮编',website:'网站',
+  contact:'主联系人',ctitle:'联系人职位',email:'邮箱',phone:'电话',status:'合作状态',diligence:'尽调状态',owner:'主维护人',
+  signedAt:'签署日',effectiveAt:'生效日',renewalAt:'续约日',notes:'备注'
+};
+const CSV_FIELDS = ['id','name',...Object.keys(MASTER),'roles','createdAt','updatedAt','isDemo'];
+const KEY = 'hm-us-partners-v1';
+const $ = id => document.getElementById(id);
+const str = value => String(value ?? '');
+const esc = value => str(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const own = (obj,key) => Object.hasOwn(obj,key);
+const now = () => new Date().toISOString();
+const uid = () => globalThis.crypto?.randomUUID?.() ?? Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16).padStart(8,'0')).join('');
+const companyId = seq => 'HM-US-'+String(seq).padStart(4,'0');
+const caseCount = company => new Set(company.caseLinks.map(link=>link.caseId)).size;
+const pending = company => ['not_started','in_progress'].includes(company.diligence);
+const flagged = company => company.status==='paused' || company.diligence==='risk';
+const stateName = state => state ? state+' · '+STATES[state] : '未填写';
+function options(map,selected,placeholder) {
+  return (placeholder === undefined ? '' : '<option value="">'+esc(placeholder)+'</option>') +
+    Object.entries(map).map(([key,label])=>`<option value="${esc(key)}" ${key===selected?'selected':''}>${esc(label)}</option>`).join('');
+}
+const choiceMap = values => Object.fromEntries(values.map(value=>[value,value]));
+const pills = roles => roles.map(role=>`<span class="pill ${role}">${ROLES[role]}</span>`).join(' ') || '<small>未设置角色</small>';
+
+function demoCompanies() {
+  const seed = [
+    ['雾杉星轨制造','CA','虚构城 A','精密制造','active','done',['sponsor','referral'],'示例维护人甲','质量工程师','EB3'],
+    ['蓝砾牧云食品','TX','虚构城 B','食品加工','signed','done',['sponsor'],'示例维护人乙','包装操作员','EW3'],
+    ['潮汐鹿角物流','WA','虚构城 C','仓储物流','negotiation','in_progress',['sponsor','other'],'示例维护人甲','仓储主管','EB3'],
+    ['纸舟曜石数据','NY','虚构城 D','数据服务','diligence','in_progress',['sponsor'],'示例维护人丙','数据分析师','EB2'],
+    ['银雀云帆咨询','IL','虚构城 E','商务咨询','prospect','not_started',['referral'],'示例维护人乙'],
+    ['棱镜苔原设备','AZ','虚构城 F','工业设备','paused','risk',['sponsor'],'示例维护人丙','设备技术员','EW+EB3'],
+    ['橙羽环月工作室','CA','虚构城 G','创意服务','ended','done',['other'],'示例维护人甲'],
+    ['雪盐彗尾系统','WA','虚构城 H','自动化服务','active','done',['sponsor','other'],'示例维护人乙','自动化工程师','EB2']
+  ];
+  const date = '2026-11-18T18:00:00.000Z';
+  const links = [
+    [[1,'EB','EW3+EB3','perm','ok'],[2,'single','EB3/本科','pwd','ok'],[3,'single','EB3/工作经验','ad','tnt'],[4,'single','EB3/本科','c140','ok']],
+    [[5,'single','EW3','pre','tnt'],[6,'single','EW3','ad','ok']],
+    [[7,'single','EB3/工作经验','pre','none']],
+    [],[],[[1,'EW','EW3+EB3','perm','ok']],[],
+    [[8,'EB','EW3+EB2','pwd','tnt'],[9,'single','EB2/硕士','c140','ok']]
+  ];
+  return seed.map(([label,state,city,industry,status,diligence,roles,owner,title,projectPath],i)=>{
+    const legalName = '示例 · '+label+' LLC';
+    const positionId = 'DEMO-POS-'+(i+1);
+    const signed = ['signed','active'].includes(status);
+    return {
+      id:companyId(i+1),legalName,name:legalName,dba:'示例 · '+label,aliases:['示例旧称 '+label],ein:'XX-XXXXXXX',edd:'示例占位',
+      naics:['332710','311999','493110','518210','541611','333999','541430','541330'][i],industry,yearEstablished:2010+i,
+      headcount:35+i*13,revenue:'USD '+(2+i)+'M（示例）',addr:'虚构示范大道 '+(100+i)+' 号',city,state,zip:'00000',
+      website:`https://partner-${i+1}.example.invalid`,contact:'示例联系人 '+String.fromCharCode(65+i),ctitle:'合作协调员',
+      email:`contact-${i+1}@example.invalid`,phone:'+1 202-555-01'+String(i).padStart(2,'0'),
+      contacts:i===0?[{id:'DEMO-CONTACT-1',name:'示例联系人 J',title:'岗位协调员',email:'jobs@example.invalid',phone:'+1 202-555-0110',isPrimary:false}]:[],
+      roles,status,diligence,owner,signedAt:signed?'2026-10-20':'',effectiveAt:signed?'2026-11-01':'',renewalAt:signed?'2027-11-01':'',
+      notes:status==='paused'?'示例记录：等待补充经营材料。':'示例记录：已整理合作概况，待维护人确认下一步。',
+      positions:title?[{id:positionId,title,location:city,state,projectPath,wageLevel:'Level '+(i===1?'I':'II'),wageAmount:i===1?'USD 21 / 小时':'USD 78,000 / 年',slots:3+i,notes:'示例岗位与工资占位'}]:[],
+      caseLinks:links[i].map(([n,line,category,stage,matchStatus])=>({
+        caseId:'WRITER-DEMO-'+String(n).padStart(3,'0'),clientLabel:'示例客户 '+String.fromCharCode(64+n),line,category,stage,matchStatus,positionId,updatedAt:date
+      })),
+      timeline:[
+        {id:'DEMO-FOLLOW-'+i,at:date,action:signed?'合作例行沟通':'合作资料跟进',note:'已核对本轮待办，并记录下一次沟通。',nextFollowUp:status==='ended'?'':'2026-11-27',actor:owner},
+        {id:'DEMO-START-'+i,at:'2026-10-15T18:00:00.000Z',action:'建立企业主档',note:'整理初次接洽摘要。',nextFollowUp:'',actor:owner}
+      ],
+      createdAt:'2026-10-15T18:00:00.000Z',updatedAt:date,isDemo:true
+    };
+  });
+}
+function initialData() {
+  const companies = demoCompanies();
+  return {schemaVersion:1,nextId:companies.length+1,companies};
+}
+let data, storageError = '';
+try {
+  const saved = localStorage.getItem(KEY);
+  data = saved ? JSON.parse(saved) : initialData();
+  if (data?.schemaVersion!==1 || !Array.isArray(data.companies) || !Number.isSafeInteger(data.nextId) || data.nextId<1) {
+    throw new Error('无效的本机记录');
+  }
+} catch {
+  data = initialData();
+  storageError = '无法读取本机存储。当前显示示例，请先导出备份或检查浏览器设置。';
+}
+let view = 'overview', detailId = '', drill = null, filter = {}, noticeTimer;
+let importDraft = null;
+const workspace = $('workspace'), drawer = $('drawer'), modal = $('modal');
+function notify(message) {
+  $('notice').textContent = message;
+  clearTimeout(noticeTimer);
+  noticeTimer = setTimeout(()=>{$('notice').textContent='';},4500);
+}
+function fail(error) {
+  const area = modal.open && modal.querySelector('.error');
+  if (area) area.textContent = error.message;
+  else notify(error.message);
+}
+function persist(next) {
+  try { localStorage.setItem(KEY,JSON.stringify(next)); }
+  catch { throw new Error('保存失败，请检查浏览器存储设置或容量。当前更改尚未写入。'); }
+  data = next;
+  storageError = '';
+  render();
+  if (drawer.open) renderDetail();
+}
+function updateCompany(id,change) {
+  const next = structuredClone(data);
+  const company = next.companies.find(row=>row.id===id);
+  if (!company) throw new Error('找不到这家企业。');
+  change(company);
+  company.updatedAt = now();
+  persist(next);
+}
+function allocateId(next) {
+  if (!Number.isSafeInteger(next.nextId) || next.nextId>=Number.MAX_SAFE_INTEGER) throw new Error('企业编号已达上限。');
+  return companyId(next.nextId++);
+}
+function addStatus(company,status) {
+  if (company.status===status) return;
+  company.timeline.push({id:uid(),at:now(),action:'更新合作状态',note:STATUS[company.status]+' → '+STATUS[status],actor:company.owner||'本地操作',nextFollowUp:''});
+  company.status = status;
+}
+function changeStatus(id,status) {
+  if (!own(STATUS,status)) return;
+  if (data.companies.find(company=>company.id===id)?.status===status) return;
+  updateCompany(id,company=>addStatus(company,status));
+  notify('合作状态已保存，并记录到跟进时间线。');
+}
+function switchView(target) {
+  view = target;
+  drill = null;
+  filter = {};
+  render();
+}
+function summary(companies) {
+  const counts = new Set(companies.flatMap(company=>company.caseLinks.map(link=>link.caseId)));
+  const totals = [
+    ['all','','企业总数',companies.length,'按企业 ID 计数'],
+    ['cases','yes','在办关联案件',counts.size,'跨企业、跨线路按案件 ID 去重'],
+    ['pending','','待尽调',companies.filter(pending).length,'尽调未开始或进行中'],
+    ['flagged','','暂缓 / 有风险',companies.filter(flagged).length,'合作暂缓或尽调有风险，按企业去重']
+  ];
+  const blocks = [
+    ['按合作状态','status',Object.entries(STATUS),(c,k)=>c.status===k],
+    ['按州','state',[...new Set(companies.map(c=>c.state))].sort().map(key=>[key||'_blank',stateName(key)]),(c,k)=>(c.state||'_blank')===k],
+    ['按合作角色','role',Object.entries(ROLES),(c,k)=>c.roles.includes(k)]
+  ];
+  return `<div class="section-head"><h2>总览统计</h2><p class="muted">点击任一数字查看对应企业，再打开详情。</p></div>
+    <div class="grid kpis">${totals.map(([group,value,label,n,description])=>
+      `<button class="kpi" data-drill="${group}" data-value="${value}" data-label="${esc(label)}"><span>${label}</span><strong>${n}</strong><small>${description}</small></button>`).join('')}</div>
+    <div class="grid breakdowns">${blocks.map(([title,group,entries,test])=>{
+      const rows = entries.map(([key,label])=>{
+        const n = companies.filter(c=>test(c,key)).length;
+        return `<button class="metric" data-drill="${group}" data-value="${esc(key)}" data-label="${esc(label)}"><span>${esc(label)}</span><span class="track" aria-hidden="true"><i style="width:${n/Math.max(1,companies.length)*100}%"></i></span><strong>${n}</strong></button>`;
+      }).join('');
+      return `<section class="panel"><h3>${title}</h3>${rows||'<p class="muted">暂无记录</p>'}</section>`;
+    }).join('')}</div>
+    <p class="footnote muted">分布按企业计数。州采用注册州；多角色企业会计入每个对应角色。原型将所有本地关联视为在办，占位记录包含未定、暂定和已确定。</p>`;
+}
+function companyPaths(company) {
+  return [...new Set([...company.positions.map(p=>p.projectPath),...company.caseLinks.flatMap(link=>{
+    const category = link.category;
+    const path = category.startsWith('EW3+') ? category.replace('EW3+','EW+') : category==='EB1/NIW' ? category : category.split('/')[0];
+    return [path,category];
+  })].filter(Boolean))];
+}
+function matchingCompanies() {
+  const q = (filter.q||'').trim().toLowerCase();
+  return data.companies.filter(company=>{
+    const search = [company.id,company.legalName,company.dba,...company.aliases,company.contact,...company.contacts.map(c=>c.name),company.industry,company.city,company.notes,...company.positions.map(p=>p.title)];
+    return (!q || search.some(value=>str(value).toLowerCase().includes(q))) &&
+      (!filter.status || company.status===filter.status) &&
+      (!filter.state || (company.state||'_blank')===filter.state) &&
+      (!filter.role || company.roles.includes(filter.role)) &&
+      (!filter.path || companyPaths(company).includes(filter.path)) &&
+      (!filter.diligence || company.diligence===filter.diligence) &&
+      (!filter.cases || (filter.cases==='yes')===Boolean(company.caseLinks.length)) &&
+      (!drill || drill.group!=='pending' || pending(company)) &&
+      (!drill || drill.group!=='flagged' || flagged(company));
+  });
+}
+function filters() {
+  const paths = [...new Set([...PATHS,...data.companies.flatMap(companyPaths)])].sort();
+  const groups = [
+    ['status','合作状态',STATUS],['state','注册州',{...STATES,_blank:'未填写'}],['role','合作角色',ROLES],
+    ['path','项目路径',choiceMap(paths)],['diligence','尽调状态',DILIGENCE],['cases','关联案件',{yes:'有案件',no:'无案件'}]
+  ];
+  return `<div class="panel filters stack"><div class="row between"><input id="search" type="search" aria-label="企业搜索" placeholder="搜索企业 ID、名称、DBA、联系人、岗位等" value="${esc(filter.q)}"><button data-action="reset-filter">清除筛选</button></div>
+    <div class="row">${groups.map(([key,label,map])=>`<select aria-label="${label}" data-filter="${key}">${options(map,filter[key],label+' · 全部')}</select>`).join('')}</div></div>`;
+}
+function renderResults() {
+  const companies = matchingCompanies();
+  $('result-count').textContent = '显示 '+companies.length+' / '+data.companies.length+' 家企业';
+  $('results').innerHTML = view==='board' ? board(companies) : list(companies);
+}
+function list(companies) {
+  if (!companies.length) return '<p class="panel empty">没有符合条件的企业。</p>';
+  return `<div class="panel table-wrap"><table><thead><tr><th>企业 / ID</th><th>州 / 行业</th><th>合作角色</th><th>合作状态</th><th>尽调</th><th>主维护人</th><th>在办案件</th></tr></thead><tbody>${companies.map(c=>
+    `<tr><td><button class="link" data-open="${c.id}">${esc(c.legalName)}</button><br><small class="mono">${c.id}</small></td><td>${esc(stateName(c.state))}<br><small>${esc(c.industry||'—')}</small></td><td>${pills(c.roles)}</td><td><span class="pill ${c.status}">${STATUS[c.status]}</span></td><td><span class="pill ${c.diligence}">${DILIGENCE[c.diligence]}</span></td><td>${esc(c.owner||'—')}</td><td>${caseCount(c)} 件</td></tr>`).join('')}</tbody></table></div>`;
+}
+function board(companies) {
+  return `<div class="board">${Object.entries(STATUS).map(([status,label])=>{
+    const cards = companies.filter(c=>c.status===status);
+    return `<section class="lane" data-lane="${status}" aria-label="${label}"><h3 class="row between">${label}<span class="pill">${cards.length}</span></h3>${cards.map(c=>
+      `<article class="card" draggable="true" data-card="${c.id}"><button class="link" data-open="${c.id}">${esc(c.legalName)}</button><small>${esc(stateName(c.state))}</small><div class="row">${pills(c.roles)}</div><small>在办 ${caseCount(c)} 件 · ${esc(c.owner||'未分配')}</small><select data-status="${c.id}" aria-label="${esc(c.legalName)}的合作状态">${options(STATUS,status)}</select></article>`).join('')||( '<p class="empty">暂无企业</p>')}</section>`;
+  }).join('')}</div>`;
+}
+function render() {
+  $('banner').innerHTML = storageError ? esc(storageError) : data.companies.some(c=>c.isDemo)
+    ? '<span class="badge">示例数据</span>　示例企业、联系人与关联案件均为虚构。'
+    : '本机数据　·　使用数据管理导出备份或恢复示例数据。';
+  document.querySelectorAll('[data-view]').forEach(button=>button.setAttribute('aria-current',button.dataset.view===view));
+  if (view==='overview') {
+    workspace.innerHTML = summary(data.companies);
+    return;
+  }
+  const subtitle = view==='board' ? '拖拽企业卡片或使用状态下拉，变更会自动写入跟进时间线。' : '打开企业名称可查看主档、岗位、关联案件和跟进记录。';
+  workspace.innerHTML = `<div class="section-head"><h2>${view==='board'?'合作看板':'企业列表'}</h2><p class="muted">${subtitle}</p></div>
+    ${filters()}<div class="row between section-head"><span id="result-count" class="muted" aria-live="polite"></span>${drill?'<span class="pill">钻取 · '+esc(drill.label)+'</span>':''}</div><div id="results"></div>`;
+  renderResults();
+}
+const POS = {title:'职位',location:'工作地点',state:'工作州',projectPath:'项目路径',wageLevel:'工资水平',wageAmount:'工资金额',slots:'可用名额',notes:'备注'};
+const CASE = {caseId:'占位案件 ID',clientLabel:'示例客户显示名',line:'线路',category:'项目类别',stage:'案件阶段',matchStatus:'匹配状态',positionId:'关联岗位'};
+const FOLLOW = {action:'跟进动作',actor:'记录人',nextFollowUp:'下次跟进日',note:'跟进说明'};
+const DETAIL = {...MASTER};
+delete DETAIL.notes;
+function dialogHead(title,subtitle='') {
+  return `<div class="dialog-head row between"><div>${subtitle?`<p class="muted">${esc(subtitle)}</p>`:''}<h2>${esc(title)}</h2></div><button class="icon" data-action="close" aria-label="关闭">×</button></div>`;
+}
+function section(title,body,action='') {
+  return `<section class="panel"><div class="row between"><h3>${title}</h3>${action}</div>${body}</section>`;
+}
+const blank = text => '<p class="muted">'+text+'</p>';
+const add = (kind,label) => `<button data-action="${kind}">${label}</button>`;
+const itemAction = (kind,id,label) => `<button data-action="${kind}" data-item="${esc(id)}">${label}</button>`;
+const linkKey = link => JSON.stringify([link.caseId,link.line]);
+function detailValue(company,key) {
+  const value = company[key];
+  if (key==='state') return stateName(value);
+  if (key==='status') return STATUS[value];
+  if (key==='diligence') return DILIGENCE[value];
+  if (key==='aliases') return value.join('、');
+  if (key==='yearEstablished' && value) {
+    const years = new Date().getFullYear()-Number(value);
+    return years>=0 ? value+' 年 · 约 '+years+' 年' : value;
+  }
+  return value;
+}
+function stageBar(links) {
+  const counts = Object.keys(STAGES).map(key=>links.filter(link=>link.stage===key).length);
+  return `<div class="stage-bar" aria-label="案件阶段分布">${Object.values(STAGES).map(([label,color],i)=>counts[i]?
+    `<span style="flex:${counts[i]};background:${color}" title="${label} ${counts[i]} 条"></span>`:'').join('')}</div>
+    <div class="legend">${Object.values(STAGES).map(([label,color,note],i)=>`<span title="${note}"><i class="dot" style="background:${color}"></i>${label} ${counts[i]}</span>`).join('')}</div>`;
+}
+function renderDetail() {
+  const c = data.companies.find(company=>company.id===detailId);
+  if (!c) {drawer.close();return;}
+  const scroll = drawer.scrollTop;
+  const fields = Object.entries(DETAIL).map(([key,label])=>`<div><dt>${label}</dt><dd>${esc(str(detailValue(c,key))||'—')}</dd></div>`).join('');
+  const positions = c.positions.map(p=>`<div class="subrow"><div class="row between"><strong>${esc(p.title)}</strong><div class="row">${itemAction('position',p.id,'编辑')}${itemAction('remove-position',p.id,'删除')}</div></div><p class="muted">${[p.projectPath,p.location,p.state,p.wageLevel,p.wageAmount,p.slots+' 个名额'].filter(Boolean).map(esc).join(' · ')}</p><p>${esc(p.notes)}</p></div>`).join('');
+  const links = c.caseLinks.map(l=>{
+    const title = c.positions.find(p=>p.id===l.positionId)?.title;
+    return `<div class="subrow"><div class="row between"><strong>${esc(l.clientLabel||l.caseId)}</strong><div class="row">${itemAction('case',linkKey(l),'编辑')}${itemAction('remove-case',linkKey(l),'移除')}</div></div><p class="muted">${[l.caseId,LINES[l.line],l.category,STAGES[l.stage][0],MATCH[l.matchStatus],title].filter(Boolean).map(esc).join(' · ')}</p></div>`;
+  }).join('');
+  const timeline = [...c.timeline].sort((a,b)=>b.at.localeCompare(a.at)).map(t=>`<div class="subrow"><strong>${esc(t.action)}</strong><p class="muted">${esc(new Date(t.at).toLocaleString('zh-CN'))} · ${esc(t.actor||'未填写')}${t.nextFollowUp?' · 下次 '+esc(t.nextFollowUp):''}</p><p>${esc(t.note)}</p></div>`).join('');
+  const contacts = c.contacts.map(person=>`<div class="subrow"><strong>${esc(person.name)}</strong><p class="muted">${[person.title,person.email,person.phone,person.isPrimary?'主联系人标记':''].filter(Boolean).map(esc).join(' · ')}</p></div>`).join('');
+  drawer.innerHTML = dialogHead(c.legalName,c.id+' · '+stateName(c.state))+`<div class="dialog-body stack">
+    <div class="row between"><div class="row">${c.isDemo?'<span class="badge">示例数据</span>':''}${pills(c.roles)}</div>${add('edit','编辑企业')}</div>
+    ${section('企业主档',`<dl class="details">${fields}</dl>${c.notes?`<div class="subrow"><small>备注</small><p>${esc(c.notes)}</p></div>`:''}
+      <div class="detail-contacts"><h4>额外联系人</h4>${contacts||blank('暂无额外联系人。')}</div>`)}
+    ${section('岗位与名额',positions||blank('暂无岗位。'),add('position','＋ 新增岗位'))}
+    ${section('关联案件 · '+caseCount(c)+' 件',`<small>阶段条按关联线路计数，案件数按 ID 去重。</small>${stageBar(c.caseLinks)}${links||blank('暂无本地关联案件。')}`,add('case','＋ 关联案件'))}
+    ${section('跟进时间线',timeline||blank('暂无跟进记录。'),add('follow','＋ 追加跟进'))}
+    </div>`;
+  drawer.scrollTop = scroll;
+}
+function field(key,label,value,config={}) {
+  const required = config.required?'required':'';
+  let input;
+  if (config.map) input = `<select name="${key}" ${required}>${options(config.map,value,config.placeholder)}</select>`;
+  else if (config.area) input = `<textarea name="${key}" ${required}>${esc(Array.isArray(value)?value.join('\n'):value)}</textarea>`;
+  else input = `<input name="${key}" type="${config.type||'text'}" value="${esc(value)}" ${required} ${config.min!==undefined?'min="'+config.min+'"':''} ${config.placeholder?'placeholder="'+esc(config.placeholder)+'"':''}>`;
+  return `<label class="${config.area?'wide':''}">${label}${config.required?' *':''}${input}</label>`;
+}
+function showModal(title,body) {
+  modal.innerHTML = dialogHead(title)+body;
+  if (!modal.open) modal.showModal();
+  modal.scrollTop = 0;
+}
+function formModal(title,fields,submit) {
+  showModal(title,`<form>
+    <div class="dialog-body"><div class="form-grid">${fields}</div></div>
+    <div class="form-actions stack"><p class="error" role="alert"></p><div class="row">
+      <button type="button" data-action="close">取消</button><button class="primary" type="submit">保存</button>
+    </div></div>
+  </form>`);
+  modal.querySelector('form').onsubmit = event=>{
+    event.preventDefault();
+    try {
+      const entries = new FormData(event.currentTarget);
+      submit(Object.fromEntries([...entries].map(([key,value])=>[key,value.trim()])),entries);
+      modal.close();
+      notify('已保存到本机浏览器。');
+    } catch(error) {fail(error);}
+  };
+}
+function editCompany(company) {
+  const c = company||{roles:[],status:'prospect',diligence:'not_started'};
+  const configs = {
+    legalName:{required:true},aliases:{area:true},notes:{area:true},addr:{area:true},state:{map:STATES,placeholder:'请选择注册州'},
+    status:{map:STATUS},diligence:{map:DILIGENCE},yearEstablished:{type:'number',min:1},headcount:{type:'number',min:0},
+    ein:{placeholder:'选填 · 示例 XX-XXXXXXX'},signedAt:{type:'date'},effectiveAt:{type:'date'},renewalAt:{type:'date'}
+  };
+  const roleFields = `<fieldset class="wide"><legend>合作角色（可多选）</legend><div class="row">${Object.entries(ROLES).map(([key,label])=>`<label style="display:inline-flex;align-items:center"><input style="width:auto" type="checkbox" name="roles" value="${key}" ${c.roles.includes(key)?'checked':''}>${label}</label>`).join('')}</div></fieldset>`;
+  const fields = Object.entries(MASTER).map(([key,label])=>field(key,label,c[key],configs[key])).join('');
+  formModal(company?'编辑企业':'新建企业',roleFields+fields,(values,entries)=>{
+    if (!values.legalName) throw new Error('请填写法定名称。');
+    const apply = row=>{
+      const previous = row.legalName;
+      const aliases = values.aliases.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+      if (previous && previous!==values.legalName) aliases.push(previous);
+      const {status,...rest} = values;
+      Object.assign(row,rest,{name:values.legalName,aliases:[...new Set(aliases)].filter(a=>a!==values.legalName),roles:entries.getAll('roles')});
+      if (row.status) addStatus(row,status);
+      else row.status = status;
+    };
+    if (company) {updateCompany(company.id,apply);return;}
+    const next = structuredClone(data);
+    const time = now();
+    const row = {id:allocateId(next),contacts:[],positions:[],caseLinks:[],timeline:[],createdAt:time,updatedAt:time,isDemo:false};
+    apply(row);
+    next.companies.push(row);
+    view = 'list'; filter = {}; drill = null;
+    persist(next);
+    openDetail(row.id);
+  });
+}
+function openDetail(id) {
+  detailId = id;
+  renderDetail();
+  if (!drawer.open) drawer.showModal();
+  drawer.scrollTop = 0;
+}
+function editPosition(c,id) {
+  const p = c.positions.find(item=>item.id===id)||{state:c.state,slots:0};
+  const configs = {
+    title:{required:true},state:{map:STATES,placeholder:'请选择工作州'},slots:{type:'number',min:0,required:true},notes:{area:true}
+  };
+  const paths = `<datalist id="project-options">${PATHS.map(path=>`<option value="${path}"></option>`).join('')}</datalist>`;
+  const fields = Object.entries(POS).map(([key,label])=>key==='projectPath'
+    ? `<label>${label}<input name="projectPath" list="project-options" value="${esc(p.projectPath)}">${paths}</label>`
+    : field(key,label,p[key],configs[key])).join('');
+  formModal(id?'编辑岗位':'新增岗位',fields,values=>{
+    if (!values.title) throw new Error('请填写职位。');
+    updateCompany(c.id,row=>{
+      const entry = {...values,id:id||uid(),slots:Number(values.slots)};
+      const index = row.positions.findIndex(item=>item.id===id);
+      if (index<0) row.positions.push(entry);
+      else row.positions[index] = entry;
+    });
+  });
+}
+function editCase(c,key) {
+  const link = c.caseLinks.find(item=>linkKey(item)===key)||{line:'single',stage:'pre',matchStatus:'none'};
+  const configs = {
+    caseId:{required:true,placeholder:'如 WRITER-DEMO-010'},clientLabel:{placeholder:'如 示例客户 K'},
+    line:{map:LINES},category:{map:choiceMap([...new Set([...CATEGORIES,link.category].filter(Boolean))]),required:true,placeholder:'请选择项目类别'},
+    stage:{map:Object.fromEntries(Object.entries(STAGES).map(([k,v])=>[k,v[0]]))},matchStatus:{map:MATCH},
+    positionId:{map:Object.fromEntries(c.positions.map(p=>[p.id,p.title])),placeholder:'暂不关联岗位'}
+  };
+  formModal(key?'编辑关联案件':'关联本地占位案件',Object.entries(CASE).map(([k,label])=>field(k,label,link[k],configs[k])).join(''),values=>{
+    if (!values.caseId) throw new Error('请填写占位案件 ID。');
+    updateCompany(c.id,row=>{
+      const entry = {...values,updatedAt:now()};
+      if (row.caseLinks.some(item=>linkKey(item)!==key && linkKey(item)===linkKey(entry))) throw new Error('该案件 ID 和线路已关联。');
+      const index = row.caseLinks.findIndex(item=>linkKey(item)===key);
+      if (index<0) row.caseLinks.push(entry);
+      else row.caseLinks[index] = entry;
+    });
+  });
+}
+function editFollow(c) {
+  const configs = {action:{required:true},nextFollowUp:{type:'date'},note:{area:true}};
+  formModal('追加跟进',Object.entries(FOLLOW).map(([key,label])=>field(key,label,key==='actor'?c.owner:'',configs[key])).join(''),values=>{
+    if (!values.action) throw new Error('请填写跟进动作。');
+    updateCompany(c.id,row=>row.timeline.push({...values,id:uid(),at:now()}));
+  });
+}
+function download(name,type,contents) {
+  const url = URL.createObjectURL(new Blob([contents],{type}));
+  const link = document.createElement('a');
+  link.download = name; link.href = url; link.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function csvCell(value) {
+  let cell = str(Array.isArray(value)?JSON.stringify(value):value);
+  // Escape spreadsheet formulas while retaining an unambiguous round trip.
+  if (/^(?:\s*[=+\-@]|[\t\r\n]|')/.test(cell)) cell = "'"+cell;
+  return '"'+cell.replaceAll('"','""')+'"';
+}
+function exportCsv() {
+  const rows = [CSV_FIELDS.join(','),...data.companies.map(c=>CSV_FIELDS.map(k=>csvCell(c[k])).join(','))];
+  download('美国合作企业-主档.csv','text/csv;charset=utf-8','\ufeff'+rows.join('\r\n'));
+}
+function parseCsv(contents) {
+  const rows = [];
+  const source = contents.replace(/^\ufeff/,'');
+  let row = [], cell = '', quoted = false, closed = false;
+  for (let i=0;i<source.length;i++) {
+    const char = source[i];
+    if (quoted) {
+      if (char!=='"') cell += char;
+      else if (source[i+1]==='"') {cell+='"';i++;}
+      else {quoted=false;closed=true;}
+    } else if (char===',' || char==='\r' || char==='\n') {
+      row.push(cell);cell='';closed=false;
+      if (char!==',') {
+        rows.push(row);row=[];
+        if (char==='\r' && source[i+1]==='\n') i++;
+      }
+    } else if (closed || (char==='"' && cell)) throw new Error('CSV 引号格式有误。');
+    else if (char==='"') quoted=true;
+    else cell+=char;
+  }
+  if (quoted) throw new Error('CSV 有未闭合的引号。');
+  if (row.length||cell||closed) rows.push([...row,cell]);
+  const headers = (rows.shift()||[]).map(key=>key.trim());
+  if (new Set(headers).size!==headers.length || !headers.some(key=>['legalName','name'].includes(key))) {
+    throw new Error('CSV 表头需要 legalName 或 name，且列名不能重复。');
+  }
+  return rows.filter(values=>values.some(Boolean)).map((values,i)=>{
+    if (values.length!==headers.length) throw new Error('CSV 数据第 '+(i+1)+' 条的列数与表头不符。');
+    const record = Object.fromEntries(headers.map((key,index)=>{
+      const value = values[index];
+      return [key,/^'(?:\s*[=+\-@]|[\t\r\n]|')/.test(value)?value.slice(1):value];
+    }));
+    for (const key of ['roles','aliases']) {
+      if (own(record,key)) record[key] = record[key].trim().startsWith('[')?JSON.parse(record[key]):record[key].split(/[|、]/).map(s=>s.trim()).filter(Boolean);
+    }
+    if (own(record,'isDemo')) record.isDemo = ['true','1'].includes(record.isDemo.toLowerCase());
+    return record;
+  });
+}
+function array(value,label) {
+  if (!Array.isArray(value)) throw new Error(label+'必须是数组。');
+  return value;
+}
+function object(value,label) {
+  if (!value || typeof value!=='object' || Array.isArray(value)) throw new Error(label+'必须是对象。');
+  return value;
+}
+function enumValue(map,value,label,fallback) {
+  const key = value||fallback;
+  if (!own(map,key)) throw new Error(label+'包含无法识别的值。');
+  return key;
+}
+function timestamp(value) {
+  if (!value) return now();
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) throw new Error('导入数据含无效时间戳。');
+  return date.toISOString();
+}
+function subrecords(source,label,convert,key) {
+  const result = array(source,label).map(value=>convert(object(value,label)));
+  if (new Set(result.map(key)).size!==result.length) throw new Error(label+'存在重复 ID 或案件线路。');
+  return result;
+}
+function normalizeCompany(source,base={}) {
+  const merged = {...base,...source};
+  const legalName = (str(source.legalName).trim() || str(source.name).trim() || str(base.legalName).trim());
+  if (!legalName) throw new Error('企业法定名称不能为空。');
+  const row = Object.fromEntries(Object.keys(MASTER).map(key=>[key,str(merged[key]).trim()]));
+  const aliases = array(merged.aliases??[],'别名').map(value=>str(value).trim()).filter(Boolean);
+  if (base.legalName && base.legalName!==legalName) aliases.push(base.legalName);
+  Object.assign(row,{
+    legalName,name:legalName,aliases:[...new Set(aliases)].filter(a=>a!==legalName),
+    state:row.state?enumValue(STATES,row.state.toUpperCase(),'注册州'):'',
+    status:enumValue(STATUS,row.status,'合作状态','prospect'),
+    diligence:enumValue(DILIGENCE,row.diligence,'尽调状态','not_started'),
+    roles:[...new Set(array(merged.roles??[],'合作角色').map(key=>enumValue(ROLES,key,'合作角色')))],
+    isDemo:merged.isDemo===true,createdAt:timestamp(merged.createdAt),updatedAt:timestamp(merged.updatedAt)
+  });
+  row.contacts = subrecords(merged.contacts??[],'额外联系人',c=>({
+    id:str(c.id)||uid(),name:str(c.name),title:str(c.title),email:str(c.email),phone:str(c.phone),isPrimary:c.isPrimary===true
+  }),c=>c.id);
+  row.positions = subrecords(merged.positions??[],'岗位',p=>{
+    const slots = Number(p.slots??0);
+    if (!str(p.title).trim() || !Number.isSafeInteger(slots) || slots<0) throw new Error('岗位需要职位及非负整数名额。');
+    return {...Object.fromEntries(Object.keys(POS).map(k=>[k,str(p[k])])),id:str(p.id)||uid(),title:str(p.title).trim(),
+      state:p.state?enumValue(STATES,str(p.state).toUpperCase(),'岗位州'):'',slots};
+  },p=>p.id);
+  const positionIds = new Set(row.positions.map(p=>p.id));
+  row.caseLinks = subrecords(merged.caseLinks??[],'关联案件',l=>{
+    if (!str(l.caseId).trim()) throw new Error('关联案件缺少案件 ID。');
+    if (l.positionId && !positionIds.has(str(l.positionId))) throw new Error('关联案件引用了不存在的岗位。');
+    return {caseId:str(l.caseId).trim(),clientLabel:str(l.clientLabel),line:enumValue(LINES,l.line,'线路','single'),
+      category:str(l.category),stage:enumValue(STAGES,l.stage,'案件阶段','pre'),matchStatus:enumValue(MATCH,l.matchStatus,'匹配状态','none'),
+      positionId:str(l.positionId),updatedAt:timestamp(l.updatedAt)};
+  },linkKey);
+  row.timeline = subrecords(merged.timeline??[],'跟进时间线',t=>({
+    ...Object.fromEntries(Object.keys(FOLLOW).map(k=>[k,str(t[k])])),id:str(t.id)||uid(),at:timestamp(t.at)
+  }),t=>t.id);
+  return row;
+}
+function planImport(draft,mode) {
+  const merge = mode==='merge';
+  const records = draft.records;
+  const reserved = new Set();
+  for (const record of records) {
+    object(record,'企业记录');
+    const id = str(record.id).trim();
+    if (!id) continue;
+    const number = Number(id.slice(6));
+    if (!/^HM-US-\d{4,}$/.test(id) || !Number.isSafeInteger(number) || number<1 || number>=Number.MAX_SAFE_INTEGER || companyId(number)!==id) {
+      throw new Error('企业 ID 格式无效，应为 HM-US-0001 一类的编号。');
+    }
+    if (reserved.has(id)) throw new Error('导入文件中的企业 ID 重复。');
+    reserved.add(id);
+  }
+  const current = new Map(data.companies.map(c=>[c.id,c]));
+  let nextId = Math.max(data.nextId,draft.nextId||1);
+  for (const id of reserved) nextId = Math.max(nextId,Number(id.slice(6))+1);
+  const counter = {nextId};
+  const result = merge ? new Map(current) : new Map();
+  let added=0, updated=0;
+  for (const record of records) {
+    const id = str(record.id).trim() || allocateId(counter);
+    const base = merge ? current.get(id) : undefined;
+    const company = {...normalizeCompany(record,base),id};
+    result.set(id,company);
+    if (base) updated++;
+    else added++;
+  }
+  return {next:{schemaVersion:1,nextId:counter.nextId,companies:[...result.values()]},added,updated};
+}
+function manageData() {
+  importDraft = null;
+  showModal('数据管理',`<div class="dialog-body stack">
+    ${section('导出备份','<div class="row">'+add('json','导出完整 JSON')+add('csv','导出企业 CSV')+'</div><p class="muted">JSON 含岗位、案件和时间线。CSV 只含企业主档。</p>')}
+    ${section('导入本地文件','<input id="import-file" type="file" accept=".json,.csv" aria-label="选择 JSON 或 CSV"><div id="import-preview"></div><p class="error" role="alert"></p>')}
+    ${section('恢复或清空','<div class="row">'+add('restore','恢复示例数据')+'<button class="danger" data-action="clear">清空本地数据</button></div><p class="muted">两项操作都会替换当前企业与关联数据，并要求确认。</p>')}
+  </div>`);
+}
+async function prepareImport(file) {
+  importDraft = null;
+  const preview = $('import-preview');
+  if (!preview) return;
+  preview.innerHTML = '';
+  modal.querySelector('.error').textContent = '';
+  if (!file) return;
+  const contents = await file.text();
+  if (preview!==$('import-preview') || $('import-file').files[0]!==file) return;
+  let nextId = 1, records;
+  const csv = /\.csv$/i.test(file.name);
+  if (csv) records = parseCsv(contents);
+  else {
+    const parsed = JSON.parse(contents.replace(/^\ufeff/,''));
+    if (Array.isArray(parsed)) records = parsed;
+    else {
+      object(parsed,'JSON');
+      if (parsed.schemaVersion!==undefined && parsed.schemaVersion!==1) throw new Error('此 JSON 版本暂不支持。');
+      records = array(parsed.companies,'companies');
+      if (Number.isSafeInteger(parsed.nextId)&&parsed.nextId>0&&parsed.nextId<Number.MAX_SAFE_INTEGER) nextId=parsed.nextId;
+    }
+  }
+  const draft = {records,nextId};
+  const plan = planImport(draft,'merge');
+  importDraft = draft;
+  preview.innerHTML = `<div class="import-actions stack"><p>读取 ${records.length} 家企业。合并预计新增 ${plan.added} 家、更新 ${plan.updated} 家。</p>
+    <p class="muted">合并按企业 ID 匹配，保留未提供的字段。无 ID 时分配新号。覆盖会删除当前企业及其关联数据。${csv?' CSV 覆盖只恢复主档。':''}</p>
+    <div class="row">${add('merge','合并导入')}${add('overwrite','覆盖导入')}</div></div>`;
+}
+function applyImport(mode) {
+  if (!importDraft) return;
+  const plan = planImport(importDraft,mode);
+  const message = mode==='merge'
+    ? `确认新增 ${plan.added} 家、更新 ${plan.updated} 家企业？同 ID 记录的导入字段会覆盖当前值。`
+    : `确认移除当前 ${data.companies.length} 家企业及其本地关联，并以文件中的 ${plan.added} 家企业替换？`;
+  if (!confirm(message)) return;
+  persist(plan.next);
+  switchView('list');
+  modal.close();
+  importDraft = null;
+  notify('导入完成。');
+}
+document.addEventListener('click',event=>{
+  const button = event.target.closest('button');
+  if (!button) return;
+  const {action,view:target,open,drill:group,value,label,item} = button.dataset;
+  try {
+    if (target) switchView(target);
+    if (open) openDetail(open);
+    if (group) {
+      view = 'list';
+      drill = {group,label};
+      filter = ['status','state','role','cases'].includes(group)?{[group]:value}:{};
+      render();
+    }
+    if (action==='close') button.closest('dialog').close();
+    if (action==='reset-filter') switchView(view);
+    if (action==='new') editCompany();
+    if (action==='data') manageData();
+    if (action==='json') download('美国合作企业-完整备份.json','application/json',JSON.stringify(data,null,2));
+    if (action==='csv') exportCsv();
+    if (action==='merge') applyImport('merge');
+    if (action==='overwrite') applyImport('overwrite');
+    if (action==='restore' && confirm('恢复示例数据将替换当前所有企业及关联数据。确认恢复？')) {
+      const next = initialData();
+      next.nextId = Math.max(next.nextId,data.nextId);
+      persist(next); switchView('overview'); modal.close(); notify('已恢复示例数据。');
+    }
+    if (action==='clear' && confirm('确认清空当前所有企业及关联数据？可通过备份恢复。')) {
+      persist({...data,companies:[]}); switchView('overview'); modal.close(); notify('本地数据已清空。');
+    }
+    const c = data.companies.find(row=>row.id===detailId);
+    if (!c) return;
+    if (action==='edit') editCompany(c);
+    if (action==='position') editPosition(c,item);
+    if (action==='case') editCase(c,item);
+    if (action==='follow') editFollow(c);
+    if (action==='remove-position' && confirm('删除该岗位？相关案件仍保留，岗位引用会清除。')) {
+      updateCompany(c.id,row=>{
+        row.positions = row.positions.filter(p=>p.id!==item);
+        for (const link of row.caseLinks.filter(l=>l.positionId===item)) {
+          link.positionId='';link.updatedAt=now();
+        }
+      });
+      notify('岗位已删除。');
+    }
+    if (action==='remove-case' && confirm('移除这条本地案件关联？')) {
+      updateCompany(c.id,row=>{row.caseLinks=row.caseLinks.filter(link=>linkKey(link)!==item);});
+      notify('案件关联已移除。');
+    }
+  } catch(error) {fail(error);}
+});
+workspace.addEventListener('input',event=>{
+  if (event.target.id==='search') {filter.q=event.target.value;renderResults();}
+});
+document.addEventListener('change',event=>{
+  const el = event.target;
+  if (el.dataset.filter) {
+    if (drill?.group===el.dataset.filter) drill=null;
+    filter[el.dataset.filter]=el.value;
+    if (!drill) workspace.querySelector('#result-count + .pill')?.remove();
+    renderResults();
+  }
+  if (el.dataset.status) {
+    try {changeStatus(el.dataset.status,el.value);}
+    catch(error) {renderResults();fail(error);}
+  }
+  if (el.id==='import-file') prepareImport(el.files[0]).catch(fail);
+});
+let dragging = '';
+function clearDrag() {
+  dragging='';
+  workspace.querySelectorAll('.lane.over').forEach(lane=>lane.classList.remove('over'));
+}
+workspace.addEventListener('dragstart',event=>{
+  const card = event.target.closest('[data-card]');
+  if (!card) return;
+  dragging=card.dataset.card;
+  event.dataTransfer.setData('text/plain',dragging);
+  event.dataTransfer.effectAllowed='move';
+});
+workspace.addEventListener('dragover',event=>{
+  const lane = event.target.closest('[data-lane]');
+  if (!dragging || !lane) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect='move';
+  workspace.querySelectorAll('.lane.over').forEach(previous=>previous.classList.toggle('over',previous===lane));
+  lane.classList.add('over');
+});
+workspace.addEventListener('dragleave',event=>{
+  const lane = event.target.closest('[data-lane]');
+  if (lane && !lane.contains(event.relatedTarget)) lane.classList.remove('over');
+});
+workspace.addEventListener('drop',event=>{
+  const lane = event.target.closest('[data-lane]');
+  if (!lane || !dragging) return;
+  event.preventDefault();
+  const id = dragging;
+  clearDrag();
+  if (data.companies.find(c=>c.id===id)?.status===lane.dataset.lane) return;
+  try {changeStatus(id,lane.dataset.lane);}
+  catch(error) {fail(error);}
+});
+workspace.addEventListener('dragend',clearDrag);
+render();
+</script>
+
+<script>
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
